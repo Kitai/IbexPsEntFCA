@@ -1,9 +1,8 @@
-//var shuffleSequence = seq("intro", rshuffle(endsWith("Critical"),endsWith("ControlFalse"),endsWith("ControlTrue"),
-//                                            endsWith("FillerTrueFal"),endsWith("FillerFalseTru")));
 var shuffleSequence = seq("Instructions", "Practice", "AfterPractice", 
-                          // rshuffle(not("Practice")), // The rshuffle above generates too predictable sequences
-                          rshuffle(function(x){return x.match(/Critical|Filler|Control/);}), // The rshuffle above generates too predictable sequences
-                          "PostExp"); 
+                          // This rshuffle is really random (not trying to get even distributions)
+                          rshuffle(function(x){return x.match(/PsEnt.*(Stop|Again).*(Critical|Filler|Control)/);}),
+                          startsWith("PsCheck"),
+                          "PostExp");
 var practiceItemTypes = ["Practice"];
 
 var showProgressBar = false;
@@ -49,7 +48,7 @@ var items = [
    ].concat(GetItemsFrom(data, null, {
        ItemGroup: ["item", "group"],
        Elements: [
-           function(x){return x.Condition;},          // Name of the item: 'Condition' column
+           function(x){return x.Expt+x.Condition;},          // Name of the item: 'Condition' column
            "Preloader",
            {files: function(x){return [x.context_sound_filename, x.test_sound_filename];},
             host: audioHost,
