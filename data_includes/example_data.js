@@ -1,6 +1,18 @@
+var Parameters = {}, 
+    URLParameters = window.location.search.replace("?", "").split("&");
+
+for (parameter in URLParameters) Parameters[URLParameters[parameter].split("=")[0]] = URLParameters[parameter].split("=")[1];
+
+var triggers;
+
+if (typeof Parameters.Expr == null || Parameters.Expr == "StAg") triggers = /Stop|Again/;
+else if (Parameters.Expr == "StAl") triggers = /Stop|Also/;
+else if (Parameters.Expr == "StRe") triggers = /Stop|Return/;
+else if (Parameters.Expr == "StBa") triggers = /Stop|Back/;
+
 var shuffleSequence = seq("Instructions", "Practice", "AfterPractice", 
                           // This rshuffle is really random (not trying to get even distributions)
-                          rshuffle(function(x){return x.match(/PsEnt.*(Stop|Again).*(Critical|Filler|Control)/);}),
+                          rshuffle(startsWith("PsEnt")),
                           startsWith("PsCheck"),
                           "PostExp");
 var practiceItemTypes = ["Practice"];
@@ -47,6 +59,7 @@ var items = [
 
    ].concat(GetItemsFrom(data, null, {
        ItemGroup: ["item", "group"],
+       Where: function(x){ return x.Condition.match(triggers)!=null; },
        Elements: [
            function(x){return x.Expt+x.Condition;},          // Name of the item: 'Condition' column
            "Preloader",
