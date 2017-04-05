@@ -59,7 +59,7 @@ var items = [
 
    ].concat(GetItemsFrom(data, null, {
        ItemGroup: ["item", "group"],
-       Where: function(x){ return x.Condition.match(triggers)!=null; },
+       Where: function(x){ return x.Condition=="Practice" | x.Condition.match(triggers)!=null; },
        Elements: [
            function(x){return x.Expt+x.Condition;},          // Name of the item: 'Condition' column
            "Preloader",
