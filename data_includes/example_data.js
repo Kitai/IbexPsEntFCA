@@ -60,7 +60,7 @@ var items = [
     ].concat(GetItemsFrom(data, null, {
       ItemGroup: ["item", "group"],
       Where: function(x){
-        if (x.item % 36 > 18) return false; // only half of the items per trigger
+        if (x.item != 1001 && x.item % 36 > 18) return false; // only half of the items per trigger
         if (x.HerAlsoStop.match(triggers)==null) return false;
         else return true;
       },
