@@ -5,17 +5,12 @@ for (parameter in URLParameters) Parameters[URLParameters[parameter].split("=")[
 
 var triggers;
 
-if (typeof Parameters.Expr == "undefined" || Parameters.Expr == "StAg") triggers = /Stop|Again/;
-else if (Parameters.Expr == "StAl") triggers = /Stop|Also/;
-else if (Parameters.Expr == "StRe") triggers = /Stop|Return/;
-else if (Parameters.Expr == "StBa") triggers = /Stop|Back/;
-
-var shuffleSequence = seq("Instructions", "PracticePractice", "AfterPractice", 
+var shuffleSequence = seq("Instructions", startsWith("Practice"), "AfterPractice", 
                           // This rshuffle is really random (not trying to get even distributions)
                           rshuffle(startsWith("PsEnt")),
                           startsWith("PsCheck"),
                           "PostExp");
-var practiceItemTypes = ["Practice"];
+var practiceItemTypes = ["PracticePracticeTrue","PracticePracticeFalse"];
 
 var showProgressBar = false;
 
@@ -28,7 +23,7 @@ var defaults = [
 ];
 
 var host = "http://files.lab.florianschwarz.net/ibexfiles/Pictures/",
-    audioHost = "http://files.lab.florianschwarz.net/ibexfiles/PsEntEx1ReGBAl/Audio/";
+    audioHost = "http://files.lab.florianschwarz.net/ibexfiles/PsEntFCA/";
 
 var items = [
 
