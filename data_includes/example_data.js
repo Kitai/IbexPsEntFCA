@@ -8,7 +8,6 @@ var triggers;
 var shuffleSequence = seq("Instructions", startsWith("Practice"), "AfterPractice", 
                           // This rshuffle is really random (not trying to get even distributions)
                           rshuffle(startsWith("PsEnt")),
-                          startsWith("PsCheck"),
                           "PostExp");
 var practiceItemTypes = ["PracticePracticeTrue","PracticePracticeFalse"];
 
