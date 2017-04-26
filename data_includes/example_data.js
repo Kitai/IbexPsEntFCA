@@ -51,7 +51,7 @@ var items = [
         html: {include: "ProlificConfirmation.html"}
     }]
 
-    ].concat(GetItemsFrom(data, null, {
+    ].concat(GetItemsFrom(dataReturn, null, {
       ItemGroup: ["item", "group"],
       Elements: [
           function(x){return x.Expt+x.Condition;},          // Name of the item: 'Condition' column
