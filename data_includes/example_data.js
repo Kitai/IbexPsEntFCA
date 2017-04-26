@@ -53,11 +53,6 @@ var items = [
 
     ].concat(GetItemsFrom(data, null, {
       ItemGroup: ["item", "group"],
-      Where: function(x){
-        if (x.item != 1001 && x.item % 36 > 18) return false; // only half of the items per trigger
-        if (x.HerAlsoStop.match(triggers)==null) return false;
-        else return true;
-      },
       Elements: [
           function(x){return x.Expt+x.Condition;},          // Name of the item: 'Condition' column
           "Preloader",
@@ -113,7 +108,7 @@ var items = [
               },
               sequence: function(x){ return [
                   // DEBUG INFORMATION
-                  "Condition: "+x.Condition+"; Item: "+x.item+"; Group: "+x.group,
+                  // "Condition: "+x.Condition+"; Item: "+x.item+"; Group: "+x.group,
                   {pause: 150},
                   //x.Context_Sentence,
                   {this: "answers", showKeys: "top"},
